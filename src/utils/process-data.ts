@@ -106,7 +106,7 @@ function processData(stats: WebpackStat) {
 
     // transform modules (reasons --> dependencies ...)
     modules.forEach(function(module: Module, idx: number) {
-        var reasons = stats.modules[idx].reasons || [];
+        var reasons = stats.modules[idx].reasons.filter(r => r.moduleId) || [];
 
         var uniqueReasons = uniqBy(reasons, 'moduleId')
             .map(reason => ({
